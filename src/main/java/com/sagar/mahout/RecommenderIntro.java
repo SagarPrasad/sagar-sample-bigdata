@@ -26,17 +26,16 @@ class RecommenderIntro {
 		  System.err.println("Please, specify name of file, or put file 'intro.csv' into current directory!");
 		  System.exit(1);
 	  }*/
-	  DataModel model = new FileDataModel(new File("intro.csv"));
+	DataModel model = new FileDataModel(new File("data/intro.csv"));
 
     UserSimilarity similarity = new PearsonCorrelationSimilarity(model);
     UserNeighborhood neighborhood =
       new NearestNUserNeighborhood(2, similarity, model);
 
-    Recommender recommender = new GenericUserBasedRecommender(
-        model, neighborhood, similarity);
+    Recommender recommender = new GenericUserBasedRecommender(model, neighborhood, similarity);
 
     List<RecommendedItem> recommendations =
-        recommender.recommend(1, 1);
+        recommender.recommend(3, 2);
 
     for (RecommendedItem recommendation : recommendations) {
       System.out.println(recommendation);
