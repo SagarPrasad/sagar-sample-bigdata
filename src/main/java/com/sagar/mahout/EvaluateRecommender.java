@@ -35,13 +35,13 @@ public class EvaluateRecommender {
 	 * @throws TasteException 
 	 */
 	public static void main(String[] args) throws IOException, TasteException {
-		DataModel model = new FileDataModel(new File("data/intro.csv"));
+		DataModel model = new FileDataModel(new File("data/movies.csv"));
 		RecommenderEvaluator evaluator = new AverageAbsoluteDifferenceRecommenderEvaluator();
 		EvaluateRecommender er = new EvaluateRecommender();
 		RecommenderBuilder builder = new MyRecommenderBuilder();
 		builder.buildRecommender(model);
 		DataModelBuilder dmb = new MyBuilder();
-		double result = evaluator.evaluate(builder, dmb, model, 0.7, 0.3);
+		double result = evaluator.evaluate(builder, null, model, 0.7, 0.3);
 		System.out.println(result);
 	}
 }
